@@ -1,5 +1,8 @@
 import { rimraf } from "rimraf";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { createReadStream } from "node:fs";
+import { createServer } from "node:http";
+import { extname, join, normalize } from "node:path";
 import { build } from "esbuild";
 import { execSync } from "node:child_process";
 
@@ -52,4 +55,28 @@ let builder = await build({
 });
 if (isDevelopment) {
 	await writeFile("metafile.json", JSON.stringify(builder.metafile));
+
+	const port = Number(process.env.PORT || 3000);
+	const server = createServer((request, response) => {
+		const requestPath = decodeURIComponent((request.url || "/").split("?")[0]);
+		const relativePath = normalize(requestPath).replace(/^([.][.][/\\])+/, "");
+		const filePath = join(process.cwd(), "dist", relativePath === "/" ? "uv.bundle.js" : relativePath);
+		const contentType = {
+			".js": "application/javascript; charset=utf-8",
+			".json": "application/json; charset=utf-8",
+			".map": "application/json; charset=utf-8",
+		}[extname(filePath)] || "application/octet-stream";
+
+		createReadStream(filePath)
+			.on("error", () => {
+				response.writeHead(404);
+				response.end("Not found");
+			})
+			.on("open", () => response.writeHead(200, { "Content-Type": contentType }))
+			.pipe(response);
+	});
+
+	server.listen(port, "0.0.0.0", () => {
+		console.log(`Development server listening on port ${port}`);
+	});
 }
