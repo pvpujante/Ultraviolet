@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ultraviolet</title>
+  <style>
+    :root { color-scheme: dark; --bg:#090b14; --panel:#111525; --border:#252b43; --text:#f4f5fb; --muted:#9da5bf; --accent:#8b7cff; --accent-2:#55d6be; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--text); background: radial-gradient(circle at 80% 0%, #28204f 0, transparent 34%), var(--bg); }
+    .shell { width:min(1080px, calc(100% - 40px)); margin:0 auto; }
+    header { display:flex; align-items:center; justify-content:space-between; padding:28px 0; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:750; letter-spacing:-.02em; }
+    .mark { display:grid; place-items:center; width:36px; height:36px; border-radius:11px; color:white; background:linear-gradient(135deg,var(--accent),#574bd4); box-shadow:0 8px 25px #6e5cff33; }
+    nav { display:flex; gap:22px; color:var(--muted); font-size:14px; }
+    nav a { color:inherit; text-decoration:none; }
+    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:72px; align-items:center; padding:68px 0 82px; }
+    .eyebrow { color:var(--accent-2); font-size:13px; font-weight:750; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:16px 0 20px; max-width:650px; font-size:clamp(42px, 7vw, 76px); line-height:.98; letter-spacing:-.065em; }
+    .hero p { max-width:540px; margin:0; color:var(--muted); font-size:18px; line-height:1.65; }
+    .actions { display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; }
+    .button { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:10px; padding:12px 17px; color:var(--text); background:#171c30; font:inherit; font-size:14px; font-weight:700; text-decoration:none; }
+    .button.primary { border-color:transparent; background:var(--accent); color:#0d0b1b; }
+    .card { position:relative; overflow:hidden; padding:26px; border:1px solid var(--border); border-radius:20px; background:linear-gradient(145deg,#151a2b,#0e1220); box-shadow:0 24px 70px #0005; }
+    .card:before { content:""; position:absolute; width:180px; height:180px; right:-80px; top:-90px; border-radius:50%; background:#887bff2b; filter:blur(5px); }
+    .card-label { position:relative; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.12em; }
+    .status { display:flex; align-items:center; gap:9px; margin:18px 0 26px; font-size:21px; font-weight:750; }
+    .dot { width:9px; height:9px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 16px var(--accent-2); }
+    .rows { display:grid; gap:12px; }
+    .row { display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-top:1px solid var(--border); color:var(--muted); font-size:14px; }
+    .row strong { color:var(--text); font-weight:650; }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding-bottom:56px; }
+    .feature { padding:22px; border:1px solid var(--border); border-radius:14px; background:#0e1220cc; }
+    .feature h2 { margin:0 0 9px; font-size:16px; }
+    .feature p { margin:0; color:var(--muted); font-size:14px; line-height:1.55; }
+    footer { padding:22px 0 30px; border-top:1px solid var(--border); color:var(--muted); font-size:13px; }
+    @media (max-width:720px) { .shell { width:min(100% - 28px, 560px); } nav { display:none; } .hero { grid-template-columns:1fr; gap:38px; padding:48px 0 58px; } h1 { font-size:52px; } .features { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><div class="brand"><span class="mark">U</span><span>Ultraviolet</span></div><nav><a href="#features">Features</a><a href="https://github.com/titaniumnetwork-dev/Ultraviolet">GitHub</a></nav></header>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div><div class="eyebrow">Web proxy toolkit</div><h1 id="title">A clearer way to connect to the web.</h1><p>Ultraviolet is a sophisticated proxy framework built for controlled environments, service workers, and modern web compatibility.</p><div class="actions"><a class="button primary" href="#features">Explore Ultraviolet <span aria-hidden="true">→</span></a><a class="button" href="https://github.com/titaniumnetwork-dev/Ultraviolet">View source</a></div></div>
+        <aside class="card" aria-label="System status"><div class="card-label">System overview</div><div class="status"><span class="dot"></span>Ready to configure</div><div class="rows"><div class="row"><span>Runtime</span><strong>Service Worker</strong></div><div class="row"><span>Compatibility</span><strong>Modern browsers</strong></div><div class="row"><span>Version</span><strong>3.2.10</strong></div></div></aside>
+      </section>
+      <section id="features" class="features" aria-label="Features"><article class="feature"><h2>Built for the browser</h2><p>Rewrite requests and pages with a client-first architecture designed for the web platform.</p></article><article class="feature"><h2>Flexible by default</h2><p>Configure transports, codecs, and handlers without coupling your app to a single deployment.</p></article><article class="feature"><h2>Open source</h2><p>Inspect the implementation, extend the toolkit, and build your own controlled web experience.</p></article></section>
+    </main>
+    <footer>Ultraviolet · A toolkit for controlled web access</footer>
+  </div>
+</body>
+</html>

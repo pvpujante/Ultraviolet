@@ -18,6 +18,7 @@ await mkdir("dist");
 // don't compile these files
 await copyFile("src/sw.js", "dist/sw.js");
 await copyFile("src/uv.config.js", "dist/uv.config.js");
+await copyFile("src/index.html", "dist/index.html");
 
 let builder = await build({
 	platform: "browser",
@@ -60,8 +61,9 @@ if (isDevelopment) {
 	const server = createServer((request, response) => {
 		const requestPath = decodeURIComponent((request.url || "/").split("?")[0]);
 		const relativePath = normalize(requestPath).replace(/^([.][.][/\\])+/, "");
-		const filePath = join(process.cwd(), "dist", relativePath === "/" ? "uv.bundle.js" : relativePath);
+		const filePath = join(process.cwd(), "dist", relativePath === "/" ? "index.html" : relativePath);
 		const contentType = {
+			".html": "text/html; charset=utf-8",
 			".js": "application/javascript; charset=utf-8",
 			".json": "application/json; charset=utf-8",
 			".map": "application/json; charset=utf-8",
